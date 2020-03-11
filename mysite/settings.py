@@ -131,3 +131,21 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'blog-home'
 
 LOGIN_URL = 'login'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "nottootechy3@gmail.com" # os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = "avglxdfcvkeckcyt"#os.environ.get('EMAIL_PASS')
+'''
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "apikey"#os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = "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"#os.environ.get('EMAIL_PASS')
+DEFAULT_FROM_EMAIL = 'TestSite Team <noreply@example.com>'
+'''
+
+# google app login django_app
+# google pass : avglxdfcvkeckcyt
