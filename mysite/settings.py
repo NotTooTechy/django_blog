@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,7 @@ SECRET_KEY = '#1knd@i8a5-dpx@ycul8png21(5=l$irhd-s27nqz2navfegh4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["192.168.2.25", "localhost"]
 
 
 # Application definition
@@ -34,7 +35,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
-    'polls.apps.PollsConfig',
+   # 'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -132,20 +133,14 @@ LOGIN_REDIRECT_URL = 'blog-home'
 
 LOGIN_URL = 'login'
 
+LOCAL_CONFIG = os.path.join(BASE_DIR, 'mysite', '.config.json')
+with open(LOCAL_CONFIG, "r") as f:
+    cfg = json.load(f)
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "nottootechy3@gmail.com" # os.environ.get('EMAIL_USER')
-EMAIL_HOST_PASSWORD = "avglxdfcvkeckcyt"#os.environ.get('EMAIL_PASS')
-'''
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "apikey"#os.environ.get('EMAIL_USER')
-EMAIL_HOST_PASSWORD = "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"#os.environ.get('EMAIL_PASS')
-DEFAULT_FROM_EMAIL = 'TestSite Team <noreply@example.com>'
-'''
+EMAIL_HOST_USER = cfg['email'] # os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = cfg['password']#os.environ.get('EMAIL_PASS')
 
-# google app login django_app
-# google pass : avglxdfcvkeckcyt
