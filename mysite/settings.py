@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -144,3 +145,10 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = cfg['email'] # os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = cfg['password']#os.environ.get('EMAIL_PASS')
 
+AWS_Key_Id = cfg["AWS_Key_Id"]
+AWS_secret_key = cfg["AWS_secret_key"]
+AWS_storage_bucket_name = cfg["AWS_storage_bucket_name"]
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
